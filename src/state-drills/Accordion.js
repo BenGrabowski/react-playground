@@ -2,7 +2,10 @@ import React from 'react';
 
 class Accordion extends React.Component {
     // Need to set default prop for sections?
-    
+    static defaultProps = {
+        sections: []
+    };
+
     state = {
         currentSectionIndex: -1
     };
@@ -23,11 +26,11 @@ class Accordion extends React.Component {
     }
     
     renderSections() {
-        const currentSection = this.props.sections[this.state.currentSectionIndex]
+        // const currentSection = this.props.sections[this.state.currentSectionIndex]
         
         return this.props.sections.map((section, index) => (
-            <li>
-                <button key={index} onClick={() => this.handleButtonClick(index)}>{section.title}</button>
+            <li key={index}>
+                <button onClick={() => this.handleButtonClick(index)}>{section.title}</button>
                 {this.state.currentSectionIndex === index && this.renderContent(index)}
             </li>
         ))
